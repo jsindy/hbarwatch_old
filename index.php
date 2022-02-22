@@ -188,6 +188,13 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  		htmlRow += '<tr style="border-left: 5px solid yellow;">';
 					  	}
 					  	
+					  	const firstWay = Number(item.amount/ 100000000)+' ℏ';	
+				  		const secondWay = Number(((item.amount/ 100000000) * item.dollerValue)).toFixed(2);
+
+
+
+				  		const combinedWay = `${firstWay} ($ ${secondWay})`;	
+
 					  	htmlRow += '<td>';
 					  	htmlRow += '<a href='+ url + ' target="_blank">';
 					 	htmlRow += item.valid_start_ns; 
