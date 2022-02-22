@@ -207,7 +207,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					 	htmlRow += '0.0.'+item.sender;          
 					  	htmlRow += '</td>';
 					  	htmlRow += '<td>';
-					 	htmlRow += item.amount;          
+					 	htmlRow += item.firstWay;          
 					  	htmlRow += '</td>';
  	            	  	htmlRow += '</tr>';
 					   
