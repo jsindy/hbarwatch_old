@@ -6,7 +6,7 @@ while($row = pg_fetch_array($resultCount)){
 }
 $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 //print_r($total_pages);die;
-// $result = pg_query($conn, "select * from get_results_impr(".AMOUNT.",".TRANSECTIONSNO.")") ;
+// $result = pg_query($conn, "select * from get_results_test(".AMOUNT.",".TRANSECTIONSNO.")") ;
 // if (!$result) {  
 //  echo "An error occurred.\n";  
 //  exit;  
@@ -188,6 +188,13 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  		htmlRow += '<tr style="border-left: 2px solid red;">';
 					  	}
 					  	
+					  	const firstWay = Number(item.amount/ 100000000)+' ℏ';	
+				  		const secondWay = Number(((item.amount/ 100000000) * item.dollerValue)).toFixed(2);
+
+
+
+				  		const combinedWay = `${firstWay} ($ ${secondWay})`;	
+
 					  	htmlRow += '<td>';
 					  	htmlRow += '<a href='+ url + ' target="_blank">';
 					 	htmlRow += item.valid_start_ns; 
