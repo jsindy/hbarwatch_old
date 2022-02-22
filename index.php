@@ -23,7 +23,11 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 	$dollerValue = $dollerInfo['hedera-hashgraph']['usd']; 
 ?>
  <head>
-  	<title>Latest Transactions</title>
+
+ <br><br>
+    <p style="text-align:center;"><img src="/images/logo1.png" alt="HBAR Watch Logo" width="38%"></p>
+	
+  	<title>HBAR Watch</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -58,7 +62,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Latest Transactions</h2>
+					<h2 class="heading-section">Live Transactions (over 5,000 ℏ)</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -115,10 +119,10 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  <thead>
 					    <tr>
 					      
-					      <th>valid_start_ns</th>
-					      <th>consensus_timestamp</th>
-					      <th>sender</th>
-					      <th>amount</th>
+					      <th>Transaction</th>
+					      <th>Consensus Time</th>
+					      <th>Sender</th>
+					      <th>Amount</th>
 					    </tr>
 					  </thead>
 					  <tbody id="target-content">
@@ -181,11 +185,11 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  	//alert(url);
 					  	if(item.isNew)
 					  	{
-					  		htmlRow += '<tr style="border-left: 2px solid green;">';
+					  		htmlRow += '<tr style="border-left: 6px solid green;">';
 					  	}
 					  	else
 					  	{
-					  		htmlRow += '<tr style="border-left: 2px solid red;">';
+					  		htmlRow += '<tr style="border-left: 6px solid yellow;">';
 					  	}
 					  	
 					  	const firstWay = Number(item.amount/ 100000000)+' ℏ';	
