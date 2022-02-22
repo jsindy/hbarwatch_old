@@ -69,10 +69,10 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 						  <thead>
 						    <tr>
 						      
-						      <th>valid_start_ns</th>
-						      <th>consensus_timestamp</th>
-						      <th>sender</th>
-						      <th>amount</th>
+						      <th>Transaction</th>
+						      <th>Consensus Time</th>
+						      <th>Sender</th>
+						      <th>Amount</th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -115,11 +115,10 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					<table id="dtBasicExample" class="table table-bordered table-dark table-hover">
 					  <thead>
 					    <tr>
-					      
-					      <th>valid_start_ns</th>
-					      <th>consensus_timestamp</th>
-					      <th>sender</th>
-					      <th>amount</th>
+						    <th>Transaction</th>
+							<th>Consensus Time</th>
+						    <th>Sender</th>
+						    <th>Amount</th>
 					    </tr>
 					  </thead>
 					  <tbody id="target-content">
