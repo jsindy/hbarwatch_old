@@ -23,7 +23,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 	$dollerValue = $dollerInfo['hedera-hashgraph']['usd']; 
 ?>
  <head>
-  	<title>Latest Transactions</title>
+    <img src="/images/logo1.png" alt="HBAR Watch Logo" height="50%">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
