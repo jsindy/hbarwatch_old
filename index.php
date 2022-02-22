@@ -23,7 +23,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 	$dollerValue = $dollerInfo['hedera-hashgraph']['usd']; 
 ?>
  <head>
-    <img src="/images/logo1.png" alt="HBAR Watch Logo" width="50%">
+    <p style="text-align:center;"><img src="/images/logo1.png" alt="HBAR Watch Logo" width="30%"></p>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
