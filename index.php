@@ -181,11 +181,11 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  	//alert(url);
 					  	if(item.isNew)
 					  	{
-					  		htmlRow += '<tr style="border-left: 2px solid green;">';
+					  		htmlRow += '<tr style="border-left: 5px solid green;">';
 					  	}
 					  	else
 					  	{
-					  		htmlRow += '<tr style="border-left: 2px solid red;">';
+					  		htmlRow += '<tr style="border-left: 5px solid yellow;">';
 					  	}
 					  	
 					  	htmlRow += '<td>';
