@@ -1,0 +1,21 @@
+<?php
+define('HOST', 'localhost');
+define('PORT', 5432);
+define('USER', 'postgres');    // DB username
+define('PASSWORD', 'PASSWORD');    // DB password
+define('DATABASE', 'mirror_node');      // DB name
+
+define('AMOUNT', 300000000000); // Enter amount to find greater values
+define('REFRESH', 10); // In Seconds
+define('TRANSECTIONSNO', 15); // Must be greater then 0
+
+
+$GLOBALS['TZ'] = "";
+$conn = pg_connect("host='".HOST."' port='".PORT."' dbname='".DATABASE."' user='".USER."' password='".PASSWORD."'");  
+//connect to a database named "postgres" on the host "host" with a username and password  
+if (!$conn) {  
+ echo "An error occurred.\n";  
+ exit;  
+}  
+
+?>
