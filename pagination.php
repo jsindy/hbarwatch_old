@@ -42,7 +42,7 @@ if (!$result) {
   		// $url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/monst6/"."transaction.php?id=0.0.".$row[0]
   		// ."-".$nsHypen;
 
-  		$firstWay = number_format($row[1]/ 100000000).' ℏ';	
+  		//$firstWay = number_format($row[1]/ 100000000).' ℏ';	
   		//$secondWay = number_format(round((($row[1]/ 100000000) * $dollerValue), 2));
   		
   		//$combinedWay = $firstWay.'   ($ '.$secondWay.')';	

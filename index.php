@@ -23,8 +23,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 	$dollerValue = $dollerInfo['hedera-hashgraph']['usd']; 
 ?>
  <head>
-	<br><br>
-    <p style="text-align:center;"><img src="/images/logo1.png" alt="HBAR Watch Logo" width="38%"></p>
+  	<title>Latest Transactions</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -59,7 +58,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Live Transactions (over 5,000 ℏ)</h2>
+					<h2 class="heading-section">Latest Transactions</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -69,10 +68,10 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 						  <thead>
 						    <tr>
 						      
-						      <th>Transaction</th>
-						      <th>Consensus Time</th>
-						      <th>Sender</th>
-						      <th>Amount</th>
+						      <th>valid_start_ns</th>
+						      <th>consensus_timestamp</th>
+						      <th>sender</th>
+						      <th>amount</th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -115,10 +114,11 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					<table id="dtBasicExample" class="table table-bordered table-dark table-hover">
 					  <thead>
 					    <tr>
-						    <th>Transaction</th>
-							<th>Consensus Time</th>
-						    <th>Sender</th>
-						    <th>Amount</th>
+					      
+					      <th>valid_start_ns</th>
+					      <th>consensus_timestamp</th>
+					      <th>sender</th>
+					      <th>amount</th>
 					    </tr>
 					  </thead>
 					  <tbody id="target-content">
@@ -181,11 +181,11 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  	//alert(url);
 					  	if(item.isNew)
 					  	{
-					  		htmlRow += '<tr style="border-left: 5px solid green;">';
+					  		htmlRow += '<tr style="border-left: 2px solid green;">';
 					  	}
 					  	else
 					  	{
-					  		htmlRow += '<tr style="border-left: 5px solid yellow;">';
+					  		htmlRow += '<tr style="border-left: 2px solid red;">';
 					  	}
 					  	
 					  	const firstWay = Number(item.amount/ 100000000)+' ℏ';	
@@ -207,7 +207,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					 	htmlRow += '0.0.'+item.sender;          
 					  	htmlRow += '</td>';
 					  	htmlRow += '<td>';
-					 	htmlRow += item.firstWay;          
+					 	htmlRow += item.amount;          
 					  	htmlRow += '</td>';
  	            	  	htmlRow += '</tr>';
 					   
