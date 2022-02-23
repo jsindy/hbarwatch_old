@@ -1,11 +1,9 @@
 <?php  
-
+	require 'config.php';
   	date_default_timezone_set($_GET['tz']);
 
 	$apiURL = "http://local.hbar.watch:5551/api/v1/transactions/".$_GET['id'];
-	//$apiURL ='http://local.hbar.watch:5551/api/v1/transactions/0.0.497748-1645105723-290500559';
-	//print_r($apiURL);die;
-	//to get transection data
+	
     $curlSession = curl_init();
 	curl_setopt($curlSession, CURLOPT_URL, $apiURL);
 	curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
@@ -15,15 +13,11 @@
 	$transactionData = $jsonData['transactions'][0];
 	curl_close($curlSession);
 
-	//to get dollar value
-	$curlSession1 =  curl_init();
-	curl_setopt($curlSession1, CURLOPT_URL, 'https://api.coingecko.com/api/v3/simple/price?ids=hedera-hashgraph&vs_currencies=USD');
-	curl_setopt($curlSession1, CURLOPT_BINARYTRANSFER, true);
-	curl_setopt($curlSession1, CURLOPT_RETURNTRANSFER, true);
-
-	$dollerInfo = json_decode(curl_exec($curlSession1), true);
-	curl_close($curlSession1);
-	$dollerValue = $dollerInfo['hedera-hashgraph']['usd'];
+	//to get dollar value from database
+	
+  $resultHbar = pg_query($conn, "select hbar_value from public.hbar_usd") ;
+  $rowHbar = pg_fetch_array($resultHbar);
+  $dollerValue = $rowHbar['hbar_value'];
 ?>
  <head>
   	<title>Transaction Info</title>
@@ -96,14 +90,17 @@
 						    </tr>
 						    <tr>
 						      <td>Fee</td>
-						      <td><?php echo number_format(($transactionData['charged_tx_fee']/ 100000000)).' ℏ    ($  ' 
+						      <td><?php echo 
+						      number_format((float)$transactionData['charged_tx_fee']/ 100000000, 8, '.', ',').' ℏ    ($  ' 
 						       .
 						      number_format(round((($transactionData['charged_tx_fee']/ 100000000)) * $dollerValue), 2).')'
 						      ?></td>
 						    </tr>
 						    <tr>
 						      <td>Max Fee</td>
-						      <td><?php echo number_format(($transactionData['max_fee']/ 100000000)).' ℏ     ($  ' .
+						      <td><?php echo 
+						      number_format((float)$transactionData['max_fee']/ 100000000, 8, '.', ',').
+						      ' ℏ     ($  ' .
 						      number_format(round((($transactionData['max_fee']/ 100000000) * $dollerValue), 2)) .')' ?></td>
 						    </tr>
 
@@ -125,7 +122,8 @@
 						  
 						  <tbody>
 						  	<?php foreach ($transactionData['transfers'] as $value) { 
-						  		$firstWay = number_format($value['amount']/ 100000000).' ℏ';	
+						  		$firstWay = 
+						  		number_format((float)$value['amount']/ 100000000, 8, '.', ',').' ℏ';	
 						  		$secondWay = number_format(round((($value['amount']/ 100000000) * $dollerValue), 2));
 
 						  		$combinedWay = $firstWay.'   ($ '.$secondWay.')';

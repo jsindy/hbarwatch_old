@@ -32,8 +32,8 @@ if (!$result) {
       $nsHypen = substr_replace( $row[3], $hypen, $position, 0 );
   		
 
-  		//$firstWay = number_format($row[1]/ 100000000).' ℏ';	
-      $firstWay = number_format((float)$row[1]/ 100000000, 8, '.', ',');
+  		$firstWay = number_format($row[1]/ 100000000).' ℏ';	
+      //$firstWay = number_format((float)$row[1]/ 100000000, 8, '.', ',');
   		$secondWay = number_format(round((($row[1]/ 100000000) * $dollerValue), 2));
   		
   		$combinedWay = $firstWay.'   ($ '.$secondWay.')';	
