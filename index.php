@@ -1,26 +1,5 @@
 <?php  
 require 'config.php';
-$resultCount = pg_query($conn, "select count(*) as total from crypto_transfer") ;
-while($row = pg_fetch_array($resultCount)){
-	$totalReacords = $row["total"];
-}
-$total_pages = ceil($totalReacords / TRANSECTIONSNO);
-//print_r($total_pages);die;
-// $result = pg_query($conn, "select * from get_results_test(".AMOUNT.",".TRANSECTIONSNO.")") ;
-// if (!$result) {  
-//  echo "An error occurred.\n";  
-//  exit;  
-// } 
-
-//to get dollar value
-	$curlSession1 =  curl_init();
-	curl_setopt($curlSession1, CURLOPT_URL, 'https://api.coingecko.com/api/v3/simple/price?ids=hedera-hashgraph&vs_currencies=USD');
-	curl_setopt($curlSession1, CURLOPT_BINARYTRANSFER, true);
-	curl_setopt($curlSession1, CURLOPT_RETURNTRANSFER, true);
-
-	$dollerInfo = json_decode(curl_exec($curlSession1), true);
-	curl_close($curlSession1);
-	$dollerValue = $dollerInfo['hedera-hashgraph']['usd']; 
 ?>
  <head>
 
@@ -67,54 +46,6 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 			</div>
 			<div class="row">
 				<div class="col-md-12" >
-					<!-- <div >
-						<table class="table table-bordered table-dark table-hover">
-						  <thead>
-						    <tr>
-						      
-						      <th>valid_start_ns</th>
-						      <th>consensus_timestamp</th>
-						      <th>sender</th>
-						      <th>amount</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						  <?php 
-						  	
-						  	while ($row = pg_fetch_row($result)) {
-						  		//print_r($row);die;
-						  		$hypen = '-';
-								$position = '-9';
-								  
-								$nsHypen = substr_replace( $row[3], $hypen, $position, 0 );
-						  		$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."transaction/0.0.".$row[0]
-						  		."-".$nsHypen;
-
-						  		$firstWay = number_format($row[1]/ 100000000).' ℏ';	
-						  		$secondWay = number_format(round((($row[1]/ 100000000) * $dollerValue), 2));
-
-						  		$combinedWay = $firstWay.'   ($ '.$secondWay.')';
-						  		
-						  ?>
-						    <tr>
-						      
-						      <th scope="row">
-						      	  <a href="<?php echo $url;?>" target="_blank">
-								    <div style="height:100%;width:100%">
-								      <?php echo $row[3]; ?>
-								    </div>
-								  </a>
-
-						      </th>
-						      
-						      <td><?php echo date("Y-m-d H:i:s", substr($row[2], 0, 10)); ?></td>
-						      <td><?php echo '0.0.'.$row[0]; ?></td>
-						      <td><?php echo $combinedWay; ?></td>
-						    </tr>
-						  <?php } ?>
-						  </tbody>
-						</table>
-					</div> -->
 					<table id="dtBasicExample" class="table table-bordered table-dark table-hover">
 					  <thead>
 					    <tr>
@@ -182,7 +113,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  	var url = currentLocation + "transaction.php?id=0.0." + item.sender 
 					  	+ "-" + item.formatted_vsn
 					  	+ "&tz="+ tz;
-					  	//alert(url);
+					  	
 					  	if(item.isNew)
 					  	{
 					  		htmlRow += '<tr style="border-left: 6px solid green;">';
@@ -190,14 +121,7 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
 					  	else
 					  	{
 					  		htmlRow += '<tr style="border-left: 6px solid yellow;">';
-					  	}
-					  	
-					  	const firstWay = Number(item.amount/ 100000000)+' ℏ';	
-				  		const secondWay = Number(((item.amount/ 100000000) * item.dollerValue)).toFixed(2);
-
-
-
-				  		const combinedWay = `${firstWay} ($ ${secondWay})`;	
+					  	}	
 
 					  	htmlRow += '<td>';
 					  	htmlRow += '<a href='+ url + ' target="_blank">';
@@ -237,17 +161,6 @@ $total_pages = ceil($totalReacords / TRANSECTIONSNO);
   <script>
 	$(document).ready(function() {
 		fetchTableData(1);
-		$(".page-link").click(function(){
-			var id = $(this).attr("data-id");
-			var tolat_pages = <?php echo $total_pages;?>;
-			if(id > 9 && id < tolat_pages)
-			{
-				tempid = parseInt(id) + 1;
-				$(this).attr("data-id",tempid); 
-			}
-			var select_id = $(this).parent().attr("id");
-			fetchTableData(id);
-		});
     });
 </script>
 	</body>
