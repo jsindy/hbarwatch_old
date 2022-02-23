@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS public.hbar_usd
+CREATE TABLE public.hbar_usd
+(
+    hbar_id integer,
+    hbar_value double precision,
+    PRIMARY KEY (hbar_id)
+);
+
+ALTER TABLE public.hbar_usd
+    OWNER to postgres;

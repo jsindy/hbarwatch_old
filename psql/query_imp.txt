@@ -1,0 +1,31 @@
+-- FUNCTION: public.get_results_impr(bigint, integer, integer)
+
+-- DROP FUNCTION public.get_results_impr(bigint, integer, integer);
+
+CREATE OR REPLACE FUNCTION public.get_results_impr(
+	search_amount bigint,
+	start_from integer,
+	transections_no integer)
+    RETURNS TABLE(sender bigint, amount_sent bigint, valid_start_ns bigint, consensus_timestamp bigint) 
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $BODY$
+BEGIN
+  -- this will return matching rows from both tables.
+  Return Query
+  SELECT t.payer_account_id::bigint,ct.amount::bigint,t.consensus_timestamp ,t.valid_start_ns 
+  from transaction t
+  JOIN public.crypto_transfer ct ON ct.consensus_timestamp = t.consensus_timestamp
+  WHERE ct.amount >  search_amount
+  ORDER BY t.consensus_timestamp DESC
+  OFFSET start_from 
+  LIMIT transections_no
+  ;  
+END;
+$BODY$;
+
+ALTER FUNCTION public.get_results_impr(bigint, integer, integer)
+    OWNER TO postgres;
