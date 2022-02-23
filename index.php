@@ -116,11 +116,11 @@ require 'config.php';
 					  	
 					  	if(item.isNew)
 					  	{
-					  		htmlRow += '<tr style="border-left: 6px solid green;">';
+					  		htmlRow += '<tr style="border-left: 10px solid green;">';
 					  	}
 					  	else
 					  	{
-					  		htmlRow += '<tr style="border-left: 6px solid yellow;">';
+					  		htmlRow += '<tr style="border-left: 0px solid gray;">';
 					  	}	
 
 					  	htmlRow += '<td>';
